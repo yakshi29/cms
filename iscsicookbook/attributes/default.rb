@@ -1,0 +1,8 @@
+default['cluster_readiness']['HAcluster'] = 'true'
+default['cluster_readiness']['StorageUsername'] = 'IBM02SU393684-I54058621' 
+default['cluster_readiness']['StoragePassword'] = 'NC8XzwAt7RnddwdH'
+default['cluster_readiness']['StorageIP'] = '192.168.0.48'
+default['cluster_readiness']['Host_iqn'] = 'iqn.2018-04.com.ibm:ibm02su393684-i54058621'
+node.default['zabbix']['server_ip'] = '0.0.0.0'
+node.default['authentication']['dc_hostname'] = 'dal09ammadc001.imzcloud.ibmammsap.local'
+node.default['authentication']['ads_org_unit'] = 'IBM AMM Customers/Acme Co (1234567)/Servers - Linux'

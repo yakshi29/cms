@@ -1,0 +1,20 @@
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+Server=<%= @zabbix_server_ip %>
+ServerActive=<%= @zabbix_server_ip %>
+Include=/etc/zabbix/zabbix_agentd.d/
+HostMetadataItem=system.uname  
+EnableRemoteCommands=1 
+Timeout=30
+# IP addresses of specified interface name
+UserParameter=ip.address[*],ip a | egrep "inet.*$1" | cut -f1 -d '/' | cut -d ' ' -f6
+# Host info
+UserParameter=data.center, echo "<%= @cust_dc %>"
+UserParameter=cust.name, echo "<%= @cust_name %>"
+UserParameter=cust.code, echo "<%= @cust_org %>"
+UserParameter=pacemaker.attrs[*],out=$(sudo /var/lib/zabbix/resource_script.sh -i $1); if [ $? -eq 0 ]; then echo "$out"; else echo 0; fi
+UserParameter=pacemaker.eventLog,out=$(sudo /var/lib/zabbix/log_script.sh); if [ $? -eq 0 ]; then echo "$out"; else echo 0; fi
+
+
+
